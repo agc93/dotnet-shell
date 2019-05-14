@@ -1,7 +1,7 @@
-using dotnet_shell.Services;
+using Husk.Services;
 using Spectre.Cli;
 
-namespace dotnet_shell
+namespace Husk
 {
     public class StartCommand : Command<StartSettings>
     {

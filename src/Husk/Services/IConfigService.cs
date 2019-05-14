@@ -1,7 +1,7 @@
 using System.IO;
 using static System.Environment;
 
-namespace dotnet_shell.Services
+namespace Husk.Services
 {
     public interface IConfigService
     {

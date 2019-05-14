@@ -1,6 +1,6 @@
 using YamlDotNet.Serialization;
 
-namespace dotnet_shell
+namespace Husk
 {
     public static class YamlExtensions
     {

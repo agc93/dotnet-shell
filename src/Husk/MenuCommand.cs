@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using dotnet_shell.Services;
+using Husk.Services;
 using InquirerCS;
 using Spectre.Cli;
 using Terminal.Gui;
 
-namespace dotnet_shell
+namespace Husk
 {
     [Description("Invoke a menu to select your shell interactively")]
     public class MenuCommand : Command<MenuSettings>

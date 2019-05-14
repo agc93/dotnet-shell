@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Spectre.Cli;
 
-namespace dotnet_shell
+namespace Husk
 {
     public class MenuSettings : ShellSettings
     {
