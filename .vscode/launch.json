@@ -11,11 +11,11 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/src/Husk/bin/Debug/netcoreapp2.2/Husk.dll",
             // "args": ["--shell", "cmd.exe"],
-            "args": ["--auto", "--loop"],
+            "args": ["--auto", "--verbose"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             // "console": "internalConsole"
-            // "console": "externalTerminal"
+            "console": "externalTerminal"
         }
 
     ]

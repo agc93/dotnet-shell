@@ -32,9 +32,16 @@ namespace Husk
                 return 424;
             }
             var menu = Question.Menu("Choose Shell...");
-            foreach (KeyValuePair<string, string> shell in shells)
+            foreach (
+                KeyValuePair<string, string> shell in shells
+                    .ToList()
+                    .OrderBy(s => {
+                        var shell = System.Environment.GetEnvironmentVariable("SHELL");
+                        return string.IsNullOrWhiteSpace(shell) ? true : s.Value != shell;
+                    })
+            )
             {
-                menu.AddOption(shell.Key, () => id = ShellService.SpawnShell(shell.Value));
+                menu.AddOption(settings.IncludePath ? $"{shell.Key} [{shell.Value}]" : shell.Key, () => id = ShellService.SpawnShell(shell.Value));
             }
             if (settings.LoopShells) {
                 menu.AddOption("-Exit", () => id = -1);
