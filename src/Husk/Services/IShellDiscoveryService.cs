@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace dotnet_shell.Services
+namespace Husk.Services
 {
     public interface IShellDiscoveryService
     {
@@ -58,7 +58,12 @@ namespace dotnet_shell.Services
                     .Where(l => !l.StartsWith("#")) // in case someone is commenting /etc/shells for some reason // which as it turns out Ubuntu does ffs.
                     .Where(l => !l.Contains("nologin")) // strip out nologin shells
                     .Select(l => new KeyValuePair<string, string>(l.Split('/').Last(), l)) //use executable name as shell name
-                    // .Reverse() // this sort of made sense if it was using PATH semantics, but its not
+                    .Reverse()
+                    // .OrderBy(s => {
+                    //     var shell = System.Environment.GetEnvironmentVariable("SHELL");
+                    //     return string.IsNullOrWhiteSpace(shell) ? true : s.Value != shell;
+                    // })
+                    /* ^^ .NET, for some forsaken reason, doesn't have a generic dictionary that preserves order, so this doesn't do anything. */
                     .ToShellCollection();
             }
             catch

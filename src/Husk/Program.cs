@@ -1,10 +1,10 @@
 ﻿using System;
-using dotnet_shell.Services;
+using Husk.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Cli;
 using Terminal.Gui;
 
-namespace dotnet_shell
+namespace Husk
 {
     class Program
     {

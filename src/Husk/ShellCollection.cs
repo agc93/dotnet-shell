@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace dotnet_shell
+namespace Husk
 {
     public class ShellCollection : Dictionary<string, string>
     {

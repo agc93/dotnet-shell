@@ -1,6 +1,6 @@
-# dotnet-shell
+# Husk
 
-> Be warned, this project **will** be renamed (probably to "Husk") in a future update.
+> Formerly known as `dotnet-shell`
 
 ## Introduction
 

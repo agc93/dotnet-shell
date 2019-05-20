@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Cli;
 
-namespace dotnet_shell
+namespace Husk
 {
     public class ServiceRegistrar : ITypeRegistrar
     {

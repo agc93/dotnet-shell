@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/dotnet-shell/bin/Debug/netcoreapp2.2/dotnet-shell.dll",
+            "program": "${workspaceFolder}/src/Husk/bin/Debug/netcoreapp2.2/Husk.dll",
             // "args": ["--shell", "cmd.exe"],
-            "args": ["--auto", "--loop"],
+            "args": ["--auto", "--verbose"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             // "console": "internalConsole"

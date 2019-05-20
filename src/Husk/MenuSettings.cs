@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Spectre.Cli;
 
-namespace dotnet_shell
+namespace Husk
 {
     public class MenuSettings : ShellSettings
     {
@@ -12,6 +12,10 @@ namespace dotnet_shell
         [CommandOption("-l|--loop")]
         [Description("Return to the shell selection menu when you exit your current shell.")]
         public bool LoopShells {get;set;}
+
+        [CommandOption("-v|--verbose")]
+        [Description("Include the executable path for the shell in the menu.")]
+        public bool IncludePath {get;set;}
         
     }
 }
