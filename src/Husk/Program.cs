@@ -16,6 +16,12 @@ namespace Husk
                 .AddSingleton<IConfigService, YamlConfigService>();
             var app = new CommandApp(new ServiceRegistrar(services));
             app.Configure(config => {
+                config.AddBranch<ShellSettings>("config", branch => {
+                    branch.SetDescription("Extra commands for working with the Husk configuration file");
+                    branch.AddCommand<Config.ConfigCreateCommand>("create");
+                    branch.AddCommand<Config.ConfigListCommand>("list");
+                    branch.AddCommand<Config.ConfigDeleteCommand>("delete");
+                });
                 config.AddCommand<MenuCommand>("menu");
             });
             app.SetDefaultCommand<MenuCommand>();

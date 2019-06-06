@@ -12,20 +12,22 @@ namespace Husk
     [Description("Invoke a menu to select your shell interactively")]
     public class MenuCommand : Command<MenuSettings>
     {
-        public MenuCommand(IShellService shellService, IShellDiscoveryService discoveryService)
+        public MenuCommand(IShellService shellService, IShellDiscoveryService discoveryService, IConfigService configService)
         {
             ShellService = shellService;
             DiscoveryService = discoveryService;
+            ConfigService = configService;
         }
 
         private IShellService ShellService { get; }
         private IShellDiscoveryService DiscoveryService { get; }
+        public IConfigService ConfigService { get; }
 
         public override int Execute(CommandContext context, MenuSettings settings)
         {
             int id = 0;
-            ShellCollection shells = settings.EnableDiscovery ? DiscoveryService.FindShells() : new ShellCollection();
-            settings.ExtraShell.ToList().ForEach(s => shells.AddShell(System.IO.Path.GetFileNameWithoutExtension(s), s));
+            ShellCollection shells = settings.EnableDiscovery ? DiscoveryService.FindShells() : ConfigService.ReadConfig() ?? new ShellCollection();
+            settings.ExtraShell.ToList().ForEach(s => shells.AddShell(s));
             if (shells.Count < 1) {
                 System.Console.WriteLine("No shells available! Configure your shells, use --auto, or provide a shell with --shell to continue.");
                 System.Console.ReadLine();

@@ -18,6 +18,20 @@ namespace Husk
             return this;
         }
 
+        public ShellCollection AddShells(string[] extraShells) {
+            foreach (var shell in extraShells)
+            {
+                this.AddShell(shell);
+            }
+            return this;
+        }
+
+        public ShellCollection AddShell(string path) {
+            var key = System.IO.Path.GetFileNameWithoutExtension(path);
+            this[key] = path;
+            return this;
+        }
+
         // public static implicit operator ShellCollection(Dictionary<string, string> d) {
         //     var s = new ShellCollection();
         //     s = (ShellCollection)d;

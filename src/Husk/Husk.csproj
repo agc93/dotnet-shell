@@ -4,9 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>Husk</RootNamespace>
+    <AssemblyName>husk</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleTables" Version="2.3.0" />
     <PackageReference Include="Inquirer.cs" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Spectre.Cli" Version="0.23.0" />

@@ -12,6 +12,12 @@ namespace Husk.Services
 
     public class DefaultShellDiscoveryService : IShellDiscoveryService
     {
+        private readonly IConfigService _configService;
+
+        public DefaultShellDiscoveryService(IConfigService configService)
+        {
+            _configService = configService;
+        }
         public ShellCollection FindShells()
         {
             switch (Environment.OSVersion.Platform) {
