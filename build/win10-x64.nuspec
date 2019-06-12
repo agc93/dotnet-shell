@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package 
+    xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <metadata>
+        <id>husk.install</id>
+        <version>0.0.1</version>
+        <title>Husk (Install)</title>
+        <authors>Alistair Chapman</authors>
+        <projectUrl>https://agc93.github.io/husk/</projectUrl>
+        <copyright>Alistair Chapman 2019</copyright>
+        <licenseUrl>https://raw.githubusercontent.com/agc93/husk/master/LICENSE</licenseUrl>
+        <projectSourceUrl>https://github.com/agc93/husk</projectSourceUrl>
+        <tags>husk shell launch script</tags>
+        <summary>A simple interactive shell switcher and launcher</summary>
+        <description>
+## Husk
+
+This very simple CLI serves as a simple shell switcher. Configure your favourite terminal emulator (Terminator, cmder, ConsoleZ, Hyper, whatever) to use this as your shell and you will be prompted for what shell you *actually* want to use.
+
+- Supports basic auto-discovery (using `--auto`)
+- Supports Windows and Linux (and nominally macOS)
+- Supports per-user configuration files
+        </description>
+    </metadata>
+    <files>
+        <file src="win10-x64/**" target="tools" />
+    </files>
+</package>
