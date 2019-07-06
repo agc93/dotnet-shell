@@ -102,7 +102,7 @@ Task("Run-Unit-Tests")
 	.IsDependentOn("Build")
 	.Does(() =>
 {
-    CreateDirectory(testResultsPath);
+	CreateDirectory(testResultsPath);
 	if (projects.TestProjects.Any()) {
 
 		var settings = new DotNetCoreTestSettings {
@@ -179,29 +179,29 @@ Task("Build-Linux-Packages")
 	Information("Building packages in new container");
 	CreateDirectory($"{artifacts}/packages/");
 	foreach(var project in projects.SourceProjects) {
-    // foreach(var runtime in runtimes.Where(rt => PackagedRuntimes.Any(r => rt.Contains(r)))) {
-        foreach(var package in PackagedRuntimes) {
-            var runtime = "linux-x64";
-            var publishDir = $"{artifacts}publish/{project.Name}/{runtime}";
-            var sourceDir = MakeAbsolute(Directory(publishDir));
-            var packageDir = MakeAbsolute(Directory($"{artifacts}packages/{package}"));
-            var runSettings = new DockerContainerRunSettings {
-                Name = $"docker-fpm-{(runtime.Replace(".", "-"))}",
-                Volume = new[] { $"{sourceDir}:/src:ro", $"{packageDir}:/out:rw"},
-                Workdir = "/out",
-                Rm = true,
-                //User = "1000"
-            };
-            var opts = string.Join(" ", new List<string> {
-                "-s dir -a x86_64 --force",
-                "-m \"Alistair Chapman <alistair@agchapman.com>\"",
-                "-n husk",
-                "--after-install /src/post-install.sh",
-                "--before-remove /src/pre-remove.sh"
-            });
-            Information(opts);
-            DockerRun(runSettings, "tenzer/fpm", $"{opts} -v {packageVersion} {GetRuntimeBuild(package)} /src/=/usr/lib/husk/");
-        }
+	// foreach(var runtime in runtimes.Where(rt => PackagedRuntimes.Any(r => rt.Contains(r)))) {
+		foreach(var package in PackagedRuntimes) {
+			var runtime = "linux-x64";
+			var publishDir = $"{artifacts}publish/{project.Name}/{runtime}";
+			var sourceDir = MakeAbsolute(Directory(publishDir));
+			var packageDir = MakeAbsolute(Directory($"{artifacts}packages/{package}"));
+			var runSettings = new DockerContainerRunSettings {
+				Name = $"docker-fpm-{(runtime.Replace(".", "-"))}",
+				Volume = new[] { $"{sourceDir}:/src:ro", $"{packageDir}:/out:rw"},
+				Workdir = "/out",
+				Rm = true,
+				//User = "1000"
+			};
+			var opts = string.Join(" ", new List<string> {
+				"-s dir -a x86_64 --force",
+				"-m \"Alistair Chapman <alistair@agchapman.com>\"",
+				"-n husk",
+				"--after-install /src/post-install.sh",
+				"--before-remove /src/pre-remove.sh"
+			});
+			Information(opts);
+			DockerRun(runSettings, "tenzer/fpm", $"{opts} -v {packageVersion} {GetRuntimeBuild(package)} /src/=/usr/lib/husk/");
+		}
 	}
 });
 
@@ -248,18 +248,18 @@ Task("Build-Runtime-Package")
 #load "build/warp.cake"
 
 Task("Build-Warp-Package")
-    .IsDependentOn("Publish-Runtimes")
-    .Does(() =>
+	.IsDependentOn("Publish-Runtimes")
+	.Does(() =>
 {
-    Information("Building Warp packages");
-    CreateDirectory($"{artifacts}warp");
-    foreach(var runtime in runtimes) {
-        CreateDirectory($"{artifacts}warp/{runtime}");
-        Warp($"./dist/publish/Husk/{runtime}",
-            $"husk{(runtime.StartsWith("win") ? ".exe" : string.Empty)}",
-            $"{artifacts}warp/{runtime}/husk{(runtime.StartsWith("win") ? ".exe" : string.Empty)}",
-            GetWarpPlatform(runtime));
-    }
+	Information("Building Warp packages");
+	CreateDirectory($"{artifacts}warp");
+	foreach(var runtime in runtimes) {
+		CreateDirectory($"{artifacts}warp/{runtime}");
+		Warp($"./dist/publish/Husk/{runtime}",
+			$"husk{(runtime.StartsWith("win") ? ".exe" : string.Empty)}",
+			$"{artifacts}warp/{runtime}/husk{(runtime.StartsWith("win") ? ".exe" : string.Empty)}",
+			GetWarpPlatform(runtime));
+	}
 });
 
 // #load "build/publish.cake"
@@ -268,12 +268,12 @@ Task("Build-Warp-Package")
 // .IsDependentOn("Copy-To-Azure");
 
 Task("Default")
-    .IsDependentOn("Post-Build");
+	.IsDependentOn("Post-Build");
 
 Task("Publish")
 	.IsDependentOn("Build-Linux-Packages")
 	.IsDependentOn("Build-Windows-Packages")
 	.IsDependentOn("Build-Runtime-Package")
-    .IsDependentOn("Build-Warp-Package");
+	.IsDependentOn("Build-Warp-Package");
 
 RunTarget(target);
