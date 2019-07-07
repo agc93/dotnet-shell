@@ -15,6 +15,12 @@ namespace Husk.Services
             process.StartInfo.FileName = shellExecutable;
             process.StartInfo.Arguments = arguments ?? string.Empty;
             process.StartInfo.WorkingDirectory = System.Environment.CurrentDirectory;
+            try {
+                System.Console.Clear();
+                System.Console.Title = System.IO.Path.GetFileNameWithoutExtension(shellExecutable);
+            } catch {
+                // ignored
+            }
             var result = process.Start();
             if (result) {
                 process.WaitForExit();
